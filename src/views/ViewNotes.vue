@@ -15,7 +15,7 @@
       <div class="field is-grouped is-grouped-right">
         <div class="control">
           <button
-            @click="addNote"
+            @click="storeNotes.addNote"
             :disabled="!newNote"
             class="button is-link has-background-success"
           >
@@ -24,7 +24,7 @@
         </div>
       </div>
     </div>
-    <Note v-for="note in notes" :key="note.id" :note="note" />
+    <Note v-for="note in storeNotes.notes" :key="note.id" :note="note" @deleteClicked="deleteNote" />
   </div>
 </template>
 
@@ -35,6 +35,14 @@ imports
 
 import { ref } from "vue";
 import Note from "@/components/Notes/Note.vue";
+import { useStoreNotes } from "@/store/storeNotes"
+
+
+/*
+store
+*/
+
+const storeNotes = useStoreNotes()
 
 /*
 notes
@@ -68,4 +76,12 @@ const addNote = () => {
   newNote.value = "";
   newNoteRef.value.focus();
 };
+
+/*
+delete note
+*/
+
+const deleteNote = (idToDelete) => {
+notes.value = notes.value.filter(note => { return note.id !== idToDelete })
+}
 </script>

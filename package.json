@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "bulma": "^0.9.4",
+    "pinia": "^2.1.7",
     "uuidv4": "^6.2.13",
     "vue": "^3.2.29",
     "vue-router": "^4.0.12"
